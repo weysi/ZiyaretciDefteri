@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="CFZiyaretciDefteri.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <header>
+                <h1 class="text-center">Ziyaretçi Defteri</h1>
+
+                <%if (Session["GirisYapanID"] == null)
+                    {
+                        if (Request.Url.LocalPath != "/Giris.aspx")
+                        {
+                %>
+                <a href="Giris.aspx" class="btn btn-primary">Giriş Yap</a>
+                <%} } else {%>
+                <span>Merhaba <%=Session["GirisYapanAd"] %></span>
+                <a href="Cikis.aspx" class="btn btn-warning">Çıkış Yap</a>
+                <%} %>
+            </header>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer class="text-right">
+                Copyright 2019 &copy; WissenAkademie | All rights reserved
+            </footer>
+        </div>
+    </form>
+
+    <script>
+        function yonlendir() {
+            window.setTimeout(function () {
+                window.location = '/Giris.aspx'
+            }, 1000);
+        }
+
+        <%=scriptler%>
+    </script>
+</body>
+</html>
